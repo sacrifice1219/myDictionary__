@@ -5,6 +5,7 @@ import { Container } from '@mui/material';
 import Header from './components/header/Header';
 import Definitions from './components/Definitions/Definitions';
 import DarkMode from './components/icon/icon';
+import Footer from './components/footer/footer';
 
 function App() {
   const [word, setWord] = useState("");
@@ -28,6 +29,7 @@ function App() {
 
   useEffect(() => {
     dictionaryApi();
+    //eslint-disable-next-line
   }, [word, category]);
 
   return (
@@ -39,10 +41,12 @@ function App() {
           <span> {LightMode ? "Dark" : "Light" } Mode</span>
           <DarkMode checked={ LightMode} onChange={()=> setLightMode(!LightMode)} />
         </div>
-        <Header category={category} setCategory={setCategory} word={word} setWord={setWord} LightMode={ LightMode} />
-        {meanings && (<Definitions word={word} meanings={meanings} category={category} LightMode={ LightMode}/>)}
-     </Container>
+        <Header category={category} setCategory={setCategory} word={word} setWord={setWord} LightMode={ LightMode} setMeanings={setMeanings} />
+        {meanings && (<Definitions word={word} meanings={meanings} category={category} LightMode={ LightMode} />)}
+      </Container>
+       <Footer/>
     </div>
+   
   );
 }
 
